@@ -1,0 +1,90 @@
+<mat-card>
+  <mat-card-title>
+    Create a Form
+  </mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <div class="col-12">
+        <div class="row">
+          <div class="form-group col-6">
+            <mat-form-field class="full-width">
+              <mat-label>Background Color</mat-label>
+              <input matInput placeholder="Input background color" formControlName="backgroundColor">
+              <mat-error *ngIf="form.get('backgroundColor').hasError('required')">
+                Background Color is <strong>required.</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group col-6">
+            <mat-form-field class="full-width">
+              <mat-label>Overall Padding</mat-label>
+              <input matInput type="number" placeholder="Input overall padding" formControlName="overallPadding">
+              <mat-error *ngIf="form.get('overallPadding').hasError('required')">
+                Overall Padding is <strong>required.</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <mat-form-field class="full-width">
+              <mat-label>Border Color</mat-label>
+              <input matInput placeholder="Input border color" formControlName="borderColor">
+              <mat-error *ngIf="form.get('borderColor').hasError('required')">
+                Border Color is <strong>required.</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group col-6">
+            <div class="d-flex">
+              <label class="d-flex align-items-center slider-label">Overall Margin</label>
+              <mat-slider
+                class="full-width"
+                thumbLabel
+                tickInterval="1000"
+                step="2"
+                min="3"
+                max="50"
+                aria-label="units"
+                formControlName="overallMargin"></mat-slider>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <mat-form-field class="full-width">
+              <mat-label>Border Style</mat-label>
+              <mat-select formControlName="borderStyle">
+                <mat-option value="solid">Solid</mat-option>
+                <mat-option value="dashed">Dashed</mat-option>
+                <mat-option value="dotted">Dotted</mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.get('borderStyle').hasError('required')">
+                Border Style is <strong>required.</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group col-6">
+            <div class="d-flex">
+              <label class="d-flex align-items-center slider-label">Border Width</label>
+              <mat-slider
+                class="full-width"
+                thumbLabel
+                tickInterval="1000"
+                step="2"
+                min="3"
+                max="50"
+                aria-label="units"
+                formControlName="borderWidth"></mat-slider>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="d-flex justify-content-end">
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submit()">Submit</button>
+    </div>
+  </mat-card-actions>
+</mat-card>
