@@ -5,6 +5,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from './shared/components/layout/layout.module';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+import { ItemsService } from '../app/shared/services/items.service';
 
 @NgModule({
   declarations: [
@@ -14,9 +18,11 @@ import { LayoutModule } from './shared/components/layout/layout.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    LayoutModule
+    LayoutModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [ItemsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

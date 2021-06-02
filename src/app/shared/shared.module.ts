@@ -8,6 +8,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -21,7 +23,9 @@ import { MatCardModule } from '@angular/material/card';
     MatSliderModule,
     MatButtonModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatSlideToggleModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     StaticDisplayComponent,
@@ -31,7 +35,9 @@ import { MatCardModule } from '@angular/material/card';
     MatSliderModule,
     MatButtonModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatSlideToggleModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SharedModule { }
