@@ -9,6 +9,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { ItemsService } from '../app/shared/services/items.service';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ItemsService } from '../app/shared/services/items.service';
     AppRoutingModule,
     LayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ToastrModule.forRoot()
   ],
   providers: [ItemsService],
   bootstrap: [AppComponent]

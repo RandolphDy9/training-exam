@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ItemsService } from 'src/app/shared/services/items.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class CreateComponent implements OnInit {
   updateMode: boolean;
 
   constructor(private fb: FormBuilder,
-              private is: ItemsService) { }
+              private is: ItemsService,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -69,6 +71,7 @@ export class CreateComponent implements OnInit {
 
     setTimeout(() => {
       this.loading = false;
+      this.toastr.success(`Form has been ${ this.updateMode ? 'updated' : 'added'}.`, 'Success!');
       this.form.reset();
     }, 300);
   }

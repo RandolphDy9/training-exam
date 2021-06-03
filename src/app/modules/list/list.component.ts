@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { Item } from 'src/app/shared/models/item';
 import { ItemsService } from 'src/app/shared/services/items.service';
@@ -18,7 +19,8 @@ export class ListComponent implements OnInit {
 
   constructor(private is: ItemsService,
               private dialog: MatDialog,
-              private router: Router) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getItems();
@@ -57,6 +59,7 @@ export class ListComponent implements OnInit {
         if (result) {
           this.loading = true
           setTimeout(() => {
+            this.toastr.success('Form has been deleted.', 'Success!');
             this.is.deleteItem(selectedItem);
             this.loading = false;
           }, 300);

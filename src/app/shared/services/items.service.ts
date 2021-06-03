@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 export class ItemsService {
 
   itemsCollection: AngularFirestoreCollection<Item>;
-  items: Observable<any>;
+  items: Observable<Item[]>;
   itemDoc: AngularFirestoreDocument<Item>;
 
   public itemSelected = new BehaviorSubject<Item>(null);
