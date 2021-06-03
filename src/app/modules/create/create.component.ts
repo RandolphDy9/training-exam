@@ -12,6 +12,7 @@ export class CreateComponent implements OnInit {
   form: FormGroup;
   itemsLength: number;
   loading: boolean;
+  updateMode: boolean;
 
   constructor(private fb: FormBuilder,
               private is: ItemsService) { }
@@ -20,7 +21,6 @@ export class CreateComponent implements OnInit {
     this.buildForm();
     this.is.getItems()
       .subscribe(res => {
-        console.log(res);
         this.itemsLength = res.length;
       });
   }
@@ -33,17 +33,37 @@ export class CreateComponent implements OnInit {
       overallMargin: [null, Validators.required],
       borderWidth: [null, Validators.required],
       borderStyle: [null, Validators.required],
-      name: [null]
+      name: [null],
+      id: [null]
+    });
+
+    this.is.updateForm.subscribe(res => {
+      if (res) {
+        this.updateMode = true;
+        this.form.patchValue({
+          backgroundColor: res.backgroundColor,
+          overallPadding: res.overallPadding,
+          borderColor: res.borderColor,
+          overallMargin: res.overallMargin,
+          borderWidth: res.borderWidth,
+          borderStyle: res.borderStyle,
+          name: res.name,
+          id: res.id
+        });
+      }
     });
   }
 
   submit(): void {
     const payload = this.form.getRawValue();
-    payload.name = 'form ' + (this.itemsLength + 1);
-    console.log(payload);
 
     if (this.form.valid) {
-      this.is.addItem(payload);
+      if (this.updateMode) {
+        this.is.updateItem(payload);
+      } else {
+        payload.name = 'form ' + (this.itemsLength + 1);
+        this.is.addItem(payload);
+      }
       this.loading = true;
     }
 

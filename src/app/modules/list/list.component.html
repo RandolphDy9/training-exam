@@ -1,6 +1,6 @@
 <div class="col-12" *ngIf="items?.length > 0; else noItems">
   <div class="row">
-    <div class="col-4">
+    <div class="col-3">
       <mat-card>
         <mat-card-title>
           Forms List
@@ -15,7 +15,7 @@
       </mat-card>
     </div>
     <ng-container *ngIf="itemSelected; else noSelection">
-      <div class="col-8">
+      <div class="col-9">
         <mat-card *ngIf="loading" class="d-flex justify-content-center align-items-center card-height">
           <mat-card-content>
             <mat-spinner diameter="50"></mat-spinner>
@@ -26,6 +26,10 @@
             {{ itemSelected.name | uppercase }}
           </mat-card-title>
           <mat-card-content>
+            <div class="d-flex justify-content-end container">
+              <button mat-stroked-button color="primary" class="mx-2" (click)="update(itemSelected)">Update</button>
+              <button mat-stroked-button color="warn" (click)="delete(itemSelected)">Delete</button>
+            </div>
             <app-static-display></app-static-display>
           </mat-card-content>
         </mat-card>

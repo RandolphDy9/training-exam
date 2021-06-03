@@ -14,6 +14,7 @@ export class ItemsService {
   itemDoc: AngularFirestoreDocument<Item>;
 
   public itemSelected = new BehaviorSubject<Item>(null);
+  public updateForm = new BehaviorSubject<Item>(null);
 
   constructor(private fs: AngularFirestore) {
     this.itemsCollection = this.fs.collection('items', ref => ref.orderBy('name'));

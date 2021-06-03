@@ -1,0 +1,10 @@
+<div mat-dialog-title>{{ data.name | uppercase }}</div>
+<mat-dialog-content>
+  <div class="mb-2">
+    <p>Are you sure you want to {{ data.status }} this item?</p>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>OK</button>
+</mat-dialog-actions>

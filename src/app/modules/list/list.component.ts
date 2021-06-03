@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { Item } from 'src/app/shared/models/item';
 import { ItemsService } from 'src/app/shared/services/items.service';
 
@@ -13,16 +16,18 @@ export class ListComponent implements OnInit {
   itemSelected: Item;
   loading: boolean;
 
-  constructor(private is: ItemsService) { }
+  constructor(private is: ItemsService,
+              private dialog: MatDialog,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getItems();
+    this.is.updateForm.next(null);
   }
 
   getItems(): void {
     this.is.getItems()
     .subscribe(res => {
-      console.log(res);
       this.items = res;
     });
   }
@@ -34,6 +39,29 @@ export class ListComponent implements OnInit {
       this.is.itemSelected.next(item);
       this.loading = false;
     }, 300);
+  }
+
+  update(selectedItem: Item): void {
+    this.router.navigate(['']);
+    this.is.updateForm.next(selectedItem);
+  }
+
+  delete(selectedItem: Item): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '300px',
+      data: { name: selectedItem.name, status: 'delete' }
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.loading = true
+          setTimeout(() => {
+            this.is.deleteItem(selectedItem);
+            this.loading = false;
+          }, 300);
+        }
+      });
   }
 
 }

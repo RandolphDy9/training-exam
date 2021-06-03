@@ -1,16 +1,19 @@
 <div class="my-3 card-height"
-  [style.border]="border">
+  [style.border]="border"
+  [style.background-color]="item?.backgroundColor"
+  [style.padding.px]="item?.overallPadding"
+  [style.margin.px]="item?.overallMargin">
   <form class="container">
     <div class="col-12">
       <div class="row mt-4">
         <div class="form-group col-6">
-          <mat-form-field class="full-width">
+          <mat-form-field class="w-100">
             <mat-label>First Name</mat-label>
             <input matInput placeholder="Input first name">
           </mat-form-field>
         </div>
         <div class="form-group col-6">
-          <mat-form-field class="full-width">
+          <mat-form-field class="w-100">
             <mat-label>Last Name</mat-label>
             <input matInput type="number" placeholder="Input last name">
           </mat-form-field>
@@ -18,13 +21,13 @@
       </div>
       <div class="row mt-4">
         <div class="form-group col-6">
-          <mat-form-field class="full-width">
+          <mat-form-field class="w-100">
             <mat-label>Address</mat-label>
             <input matInput placeholder="Input address">
           </mat-form-field>
         </div>
         <div class="form-group col-6">
-          <mat-form-field class="full-width">
+          <mat-form-field class="w-100">
             <mat-label>Gender</mat-label>
             <mat-select>
               <mat-option value="male">Male</mat-option>
